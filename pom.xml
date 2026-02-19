@@ -38,6 +38,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${spring-boot.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.18.0</version>
+			<scope>compile</scope>
+		</dependency>
 		<!-- json related libraries -->
 		<dependency>
 			<groupId>org.json</groupId>

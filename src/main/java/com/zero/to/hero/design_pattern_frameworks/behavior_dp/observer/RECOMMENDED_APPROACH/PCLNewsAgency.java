@@ -1,0 +1,26 @@
+package com.zero.to.hero.design_pattern_frameworks.behavior_dp.observer.RECOMMENDED_APPROACH;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+public class PCLNewsAgency {
+    private String news;
+    private PropertyChangeSupport support;
+
+    public PCLNewsAgency() {
+        support = new PropertyChangeSupport(this);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener pcl) {
+        support.addPropertyChangeListener(pcl);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener pcl) {
+        support.removePropertyChangeListener(pcl);
+    }
+
+    public void setNews(String value) {
+        support.firePropertyChange("news", this.news, value);
+        this.news = news;
+    }
+}

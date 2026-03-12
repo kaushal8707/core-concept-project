@@ -31,10 +31,10 @@ public class OrderProcessingService {
     /** REQUIRED:       Join an Existing Transaction or create a new one If NOT EXISTS */
     /** REQUIRES_NEW:   Always create a new Transaction, suspending if any existing transaction */
     /** MANDATORY:      When the propagation is MANDATORY, if there is an active transaction, then it will be used.
-     *                  If there isn’t an active transaction, then Spring throws an exception: */
+     *                  If there isn’t an active transaction, then Spring throws an exception but if any earlier transaction save into table it will not impact */
     /** NEVER:          Ensure that the method will run without transaction If found any tx will throw an exception */
     /** NOT_SUPPORTED:  Execute method without Transaction, suspending If found any transaction. */
-    /** SUPPORTS:       Supports If there is any Active transaction, If not execute without transaction as well */
+    /** SUPPORTS:       Supports If there is any Active transaction, If not execute without transaction as well, If any error occur in a transaction then also it will support and print */
     /** NESTED:         Execute within a nested transaction, allowing nested transaction to rolled back independently
                         If there is any exception or error without impacting outer transaction */
 
@@ -70,15 +70,15 @@ public class OrderProcessingService {
         // return ResponseEntity.ok(orderProcessingService.processOrder(order));
 
         /**NOT_SUPPORTED - Execute method without Transaction, suspending If found any transaction and If any transaction found it will suspend and execute . I will not support Transaction so don't come in my way.*/
-        // productRecommendationHandler.getRecommendation();
+//         productRecommendationHandler.getRecommendation();
 
         /**SUPPORTS - If there is any Active transaction, If not execute without transaction as well*/
-        // getCustomerDetails();
+//         getCustomerDetails();
 
         return savedOrder;
     }
 
-//    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void getCustomerDetails() {
         System.out.println("Customer details fetched !!");
     }
